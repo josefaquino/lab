@@ -1,9 +1,3 @@
-function getCreativeDescription(name) {
-    const userDescription = prompt("Insira a descrição aqui:");
-    return userDescription || "(Descrição padrão)"; // Se cancelar, usa padrão
-}
-
-
 function addName() {
     const nameInput = document.getElementById("nameInput");
     const nameList = document.getElementById("nameList");
@@ -16,23 +10,21 @@ function addName() {
         nameSpan.textContent = name;
         li.appendChild(nameSpan);
 
-        const descriptionP = document.createElement("p");
-        descriptionP.classList.add("descricao-amigo");
-        const creativeDescription = getCreativeDescription(name);
-        descriptionP.textContent = creativeDescription;
-        li.appendChild(descriptionP);
+        // *** NOVO: Cria o campo de input para a descrição ***
+        const descriptionInput = document.createElement("input");
+        descriptionInput.type = "text";
+        descriptionInput.classList.add("descricao-input"); // Adiciona uma classe CSS para estilizar (opcional)
+        descriptionInput.placeholder = "Pedir descrição para IA e colar aqui"; // Texto placeholder
+        li.appendChild(descriptionInput);
 
-        // *** NOVO: Cria o botão "Remover" ***
+        // *** Cria o botão "Remover" (mantendo da versão anterior) ***
         const removeButton = document.createElement("button");
         removeButton.textContent = "Remover";
-        removeButton.classList.add("remove-button"); // Adiciona uma classe para estilizar (opcional)
-
-        // *** Adiciona um evento de clique para o botão "Remover" ***
+        removeButton.classList.add("remove-button");
         removeButton.addEventListener('click', function() {
-            li.remove(); // Remove o <li> pai (que contém o nome, descrição e botão)
+            li.remove();
         });
-
-        li.appendChild(removeButton); // Adiciona o botão "Remover" ao <li>
+        li.appendChild(removeButton);
 
         nameList.appendChild(li);
         nameInput.value = "";
@@ -43,9 +35,9 @@ function addName() {
 }
 
 function drawName() {
-    // Modificação para funcionar com a lista de nomes no DOM diretamente
+    // Mantém a função drawName() como está
     const nameListElement = document.getElementById('nameList');
-    const nameElements = nameListElement.querySelectorAll('li span'); // Pega os spans dentro dos LIs para pegar os nomes
+    const nameElements = nameListElement.querySelectorAll('li span');
     const names = Array.from(nameElements).map(span => span.textContent);
 
     if (names.length < 2) {
@@ -53,11 +45,11 @@ function drawName() {
         return;
     }
 
-    const shuffledNames = [...names].sort(() => Math.random() - 0.5); // Garante que não estamos modificando o array original diretamente
+    const shuffledNames = [...names].sort(() => Math.random() - 0.5);
     let resultText = "";
     for (let i = 0; i < shuffledNames.length; i++) {
         const giver = shuffledNames[i];
-        const receiver = shuffledNames[(i + 1) % shuffledNames.length]; // Pega o próximo nome, e volta para o primeiro no final
+        const receiver = shuffledNames[(i + 1) % shuffledNames.length];
         resultText += `${giver} vai presentear ${receiver}.<br>`;
     }
     document.getElementById("result").innerHTML = resultText;

@@ -47,6 +47,9 @@ li {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    display: flex; /* Para alinhar o input e o botão na mesma linha */
+    align-items: center; /* Alinha verticalmente os itens dentro do li */
+    justify-content: space-between; /* Espaça os itens horizontalmente */
 }
 
 .descricao-amigo {
@@ -56,8 +59,20 @@ li {
     font-size: 0.9em;
 }
 
+.descricao-input {
+    width: 70%; /* Ocupa 70% da largura disponível dentro do li */
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 0.9em;
+    margin-right: 10px; /* Adiciona um espaço à direita do input para separar do botão */
+}
+
 .remove-button {
-    background-color: #f44336; /* Vermelho */
+    background-color: #f44336;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -71,5 +86,5 @@ li {
 }
 
 .remove-button:hover {
-    background-color: #d32f2f; /* Vermelho mais escuro no hover */
+    background-color: #d32f2f;
 }
