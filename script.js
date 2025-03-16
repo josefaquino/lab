@@ -1,20 +1,6 @@
 function getCreativeDescription(name) {
-    // *** VERSÃO INICIAL E SIMPLIFICADA - APENAS PARA TESTE ***
-    // *** SUBSTITUIREMOS ISSO PELA INTERAÇÃO REAL COM A IA DEPOIS ***
-
-    // Aqui, vamos simular que a IA gerou uma descrição baseada no nome.
-    // Por enquanto, vamos retornar descrições fixas e genéricas para alguns nomes,
-    // e uma descrição padrão para os outros.
-
-    if (name === "Ana") {
-        return "Alegre como um dia de sol, ilumina qualquer amigo secreto!";
-    } else if (name === "Carlos") {
-        return "Sempre com um sorriso no rosto, vai contagiar o amigo secreto com alegria!";
-    } else if (name === "Maria") {
-        return "Cheia de mistério e surpresas, prepare-se para um presente incrível!";
-    } else {
-        return "Uma pessoa especial que vai tornar o amigo secreto ainda mais divertido!"; // Descrição padrão para outros nomes
-    }
+    // *** VERSÃO MODIFICADA PARA OPÇÃO 1 - PEDIR DESCRIÇÃO PARA A IA NA CONVERSA ***
+    return `**Peça uma descrição criativa e engraçada para "${name}" na conversa com a IA.**`;
 }
 
 function addName() {
