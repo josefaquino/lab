@@ -42,6 +42,17 @@ function addName() {
     }
 }
 
+function drawName() {
+    // Mantém a função drawName() como está
+    const nameListElement = document.getElementById('nameList');
+    const nameElements = nameListElement.querySelectorAll('li span');
+    const names = Array.from(nameElements).map(span => span.textContent);
+
+    if (names.length < 2) {
+        alert("Adicione pelo menos dois amigos para o sorteio!");
+        return;
+    }
+
     const shuffledNames = [...names].sort(() => Math.random() - 0.5);
     let resultText = "";
     for (let i = 0; i < shuffledNames.length; i++) {
