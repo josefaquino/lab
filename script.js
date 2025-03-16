@@ -18,12 +18,21 @@ function addName() {
 
         const descriptionP = document.createElement("p");
         descriptionP.classList.add("descricao-amigo");
-
-        // *** NOVO: Chama a função para obter a descrição criativa ***
         const creativeDescription = getCreativeDescription(name);
-        descriptionP.textContent = creativeDescription; // Usa a descrição retornada pela função
-
+        descriptionP.textContent = creativeDescription;
         li.appendChild(descriptionP);
+
+        // *** NOVO: Cria o botão "Remover" ***
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remover";
+        removeButton.classList.add("remove-button"); // Adiciona uma classe para estilizar (opcional)
+
+        // *** Adiciona um evento de clique para o botão "Remover" ***
+        removeButton.addEventListener('click', function() {
+            li.remove(); // Remove o <li> pai (que contém o nome, descrição e botão)
+        });
+
+        li.appendChild(removeButton); // Adiciona o botão "Remover" ao <li>
 
         nameList.appendChild(li);
         nameInput.value = "";
