@@ -42,10 +42,12 @@ function addName() {
 }
 
 function drawName() {
-    // Mantém a função drawName() como está (sem alterações)
+    // Modificação para funcionar com a lista de nomes no DOM diretamente
     const nameListElement = document.getElementById('nameList');
-    const nameElements = nameListElement.querySelectorAll('li span');
+    const nameElements = nameListElement.querySelectorAll('li span'); // Pega os spans dentro dos LIs para pegar os nomes
     const names = Array.from(nameElements).map(span => span.textContent);
+    const resultList = document.getElementById('result-list'); // Pega a lista de resultados UL
+    resultList.innerHTML = ''; // Limpa a lista de resultados antes de gerar novamente
 
     if (names.length < 2) {
         alert("Adicione pelo menos dois amigos para o sorteio!");
@@ -53,31 +55,16 @@ function drawName() {
     }
 
     const shuffledNames = [...names].sort(() => Math.random() - 0.5);
-    let resultText = "";
     for (let i = 0; i < shuffledNames.length; i++) {
         const giver = shuffledNames[i];
-        const receiver = shuffledNames[(i + 1) % shuffledNames.length];
-        resultText += `${giver} vai presentear ${receiver}.<br>`;
+        const receiver = shuffledNames[(i + 1) % shuffledNames.length]; // Pega o próximo nome, e volta para o primeiro no final
+        const listItem = document.createElement('li'); // Cria um LI para cada par
+        listItem.textContent = `${giver} vai presentear ${receiver}.`; // Define o texto do LI
+        resultList.appendChild(listItem); // Adiciona o LI à lista de resultados UL
     }
-    document.getElementById("result").innerHTML = resultText;
-}
-function drawName() {
-    // Mantém a função drawName() como está
-    const nameListElement = document.getElementById('nameList');
-    const nameElements = nameListElement.querySelectorAll('li span');
-    const names = Array.from(nameElements).map(span => span.textContent);
-
-    if (names.length < 2) {
-        alert("Adicione pelo menos dois amigos para o sorteio!");
-        return;
+    // Remove o texto antigo do parágrafo de resultado (se ainda existir)
+    const resultParagraph = document.getElementById('result');
+    if (resultParagraph) {
+        resultParagraph.innerHTML = '';
     }
-
-    const shuffledNames = [...names].sort(() => Math.random() - 0.5);
-    let resultText = "";
-    for (let i = 0; i < shuffledNames.length; i++) {
-        const giver = shuffledNames[i];
-        const receiver = shuffledNames[(i + 1) % shuffledNames.length];
-        resultText += `${giver} vai presentear ${receiver}.<br>`;
-    }
-    document.getElementById("result").innerHTML = resultText;
 }

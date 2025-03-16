@@ -1,10 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
+    /* -family: Arial, sans-serif;*/
+    font-family: 'Roboto', sans-serif; /* Adiciona a fonte Roboto */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f0f0f0;
+    
 }
 
 .container {
@@ -110,4 +112,26 @@ li {
 .insert-description-button:disabled { /* Estilo para botão desabilitado */
     background-color: #a9a9a9; /* Cinza claro */
     cursor: not-allowed; /* Indica que não pode clicar */
+}
+
+#result-container {
+    margin-top: 20px;
+    border-top: 1px solid #ccc; /* Adiciona uma linha horizontal acima do resultado */
+    padding-top: 10px;
+}
+
+#result-list {
+    list-style-type: none; /* Remove os marcadores de lista padrão */
+    padding: 0;
+}
+
+#result-list li {
+    margin-bottom: 8px; /* Espaçamento entre os itens da lista */
+    font-size: 1.1em; /* Aumenta um pouco o tamanho da fonte do resultado */
+}
+
+#result-container h2 {
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: #333; /* Cor mais escura para o título do resultado */
 }
