@@ -1,6 +1,15 @@
 function getCreativeDescription(name) {
-    // *** VERSÃO MODIFICADA PARA OPÇÃO 1 - PEDIR DESCRIÇÃO PARA A IA NA CONVERSA ***
-    return `**Peça uma descrição criativa e engraçada para "${name}" na conversa com a IA.**`;
+    // *** VERSÃO MODIFICADA PARA OPÇÃO 2 - USAR PROMPT PARA INSERIR DESCRIÇÃO DA IA ***
+    const promptMessage = `**[IA Description Needed]** \n\nPeça uma descrição criativa e engraçada para "${name}" na conversa com a IA.\n\nCole a descrição gerada pela IA aqui e clique em OK:\n(Ou clique em Cancelar para usar uma descrição padrão)`;
+    const userDescription = prompt(promptMessage, "Descrição criativa da IA aqui..."); // Prompt com mensagem e valor padrão
+
+    if (userDescription && userDescription.trim() !== "") {
+        // Se o usuário digitou algo e clicou em OK, use a descrição fornecida
+        return userDescription.trim();
+    } else {
+        // Se o usuário cancelou ou não digitou nada, use uma descrição padrão
+        return "(Descrição padrão - peça uma descrição criativa para a IA da próxima vez!)";
+    }
 }
 
 function addName() {
