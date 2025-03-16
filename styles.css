@@ -88,3 +88,26 @@ li {
 .remove-button:hover {
     background-color: #d32f2f;
 }
+
+.insert-description-button {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    margin-left: 5px; /* Menos margem que o "Remover" */
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.insert-description-button:hover {
+    background-color: #45a049; /* Verde mais escuro no hover */
+}
+
+.insert-description-button:disabled { /* Estilo para botão desabilitado */
+    background-color: #a9a9a9; /* Cinza claro */
+    cursor: not-allowed; /* Indica que não pode clicar */
+}

@@ -10,40 +10,37 @@ function addName() {
         nameSpan.textContent = name;
         li.appendChild(nameSpan);
 
-        // *** NOVO: Cria o campo de input para a descrição ***
+        // *** NOVO: Campo de input para descrição ***
         const descriptionInput = document.createElement("input");
         descriptionInput.type = "text";
-        descriptionInput.classList.add("descricao-input"); // Adiciona uma classe CSS para estilizar (opcional)
-        descriptionInput.placeholder = "Pedir descrição para IA e colar aqui"; // Texto placeholder
-        li.appendChild(descriptionInput);
+        descriptionInput.classList.add("descricao-input");
+        descriptionInput.placeholder = "Pedir descrição para IA e colar aqui";
 
-        // *** Cria o botão "Remover" (mantendo da versão anterior) ***
-        const removeButton = document.createElement("button");
-        removeButton.textContent = "Remover";
-        removeButton.classList.add("remove-button");
-        removeButton.addEventListener('click', function() {
-            li.remove();
+        // *** NOVO: Botão "Inserir Descrição" ***
+        const insertDescriptionButton = document.createElement("button");
+        insertDescriptionButton.textContent = "Inserir";
+        insertDescriptionButton.classList.add("insert-description-button");
+
+        // *** Evento de clique para o botão "Inserir Descrição" ***
+        insertDescriptionButton.addEventListener('click', function() {
+            descriptionInput.placeholder = "Descrição Inserida!"; // Muda o placeholder para indicar sucesso
+            descriptionInput.disabled = true; // Opcional: Desabilita o input após inserir (pode ser removido se não quiser)
+            insertDescriptionButton.disabled = true; // Desabilita o botão após clicar
         });
-        li.appendChild(removeButton);
 
-        nameList.appendChild(li);
+
+        li.appendChild(descriptionInput);
+        li.appendChild(insertDescriptionButton); // Adiciona o botão ao LI
+
+        // *** NOVO: Adiciona o LI NO TOPO da lista (prepend) ***
+        nameList.prepend(li); // Usar prepend para adicionar no início da lista
+
         nameInput.value = "";
         nameInput.focus();
     } else {
         alert('Por favor, insira um nome.');
     }
 }
-
-function drawName() {
-    // Mantém a função drawName() como está
-    const nameListElement = document.getElementById('nameList');
-    const nameElements = nameListElement.querySelectorAll('li span');
-    const names = Array.from(nameElements).map(span => span.textContent);
-
-    if (names.length < 2) {
-        alert("Adicione pelo menos dois amigos para o sorteio!");
-        return;
-    }
 
     const shuffledNames = [...names].sort(() => Math.random() - 0.5);
     let resultText = "";
