@@ -14,9 +14,10 @@ function addName() {
         const descriptionInput = document.createElement("input");
         descriptionInput.type = "text";
         descriptionInput.classList.add("descricao-input");
-        descriptionInput.placeholder = "Pedir descrição para IA e colar aqui";
+        // *** MODIFICADO: Placeholder inicial para "Carregando descrição..." ***
+        descriptionInput.placeholder = "Carregando descrição...";
 
-        // *** NOVO: Botão "Inserir Descrição" ***
+        // *** Botão "Inserir Descrição" ***
         const insertDescriptionButton = document.createElement("button");
         insertDescriptionButton.textContent = "Inserir";
         insertDescriptionButton.classList.add("insert-description-button");
@@ -24,16 +25,14 @@ function addName() {
         // *** Evento de clique para o botão "Inserir Descrição" ***
         insertDescriptionButton.addEventListener('click', function() {
             descriptionInput.placeholder = "Descrição Inserida!"; // Muda o placeholder para indicar sucesso
-            descriptionInput.disabled = true; // Opcional: Desabilita o input após inserir (pode ser removido se não quiser)
-            insertDescriptionButton.disabled = true; // Desabilita o botão após clicar
+            descriptionInput.disabled = true;
+            insertDescriptionButton.disabled = true;
         });
 
-
         li.appendChild(descriptionInput);
-        li.appendChild(insertDescriptionButton); // Adiciona o botão ao LI
+        li.appendChild(insertDescriptionButton);
 
-        // *** NOVO: Adiciona o LI NO TOPO da lista (prepend) ***
-        nameList.prepend(li); // Usar prepend para adicionar no início da lista
+        nameList.prepend(li);
 
         nameInput.value = "";
         nameInput.focus();
@@ -42,6 +41,26 @@ function addName() {
     }
 }
 
+function drawName() {
+    // Mantém a função drawName() como está (sem alterações)
+    const nameListElement = document.getElementById('nameList');
+    const nameElements = nameListElement.querySelectorAll('li span');
+    const names = Array.from(nameElements).map(span => span.textContent);
+
+    if (names.length < 2) {
+        alert("Adicione pelo menos dois amigos para o sorteio!");
+        return;
+    }
+
+    const shuffledNames = [...names].sort(() => Math.random() - 0.5);
+    let resultText = "";
+    for (let i = 0; i < shuffledNames.length; i++) {
+        const giver = shuffledNames[i];
+        const receiver = shuffledNames[(i + 1) % shuffledNames.length];
+        resultText += `${giver} vai presentear ${receiver}.<br>`;
+    }
+    document.getElementById("result").innerHTML = resultText;
+}
 function drawName() {
     // Mantém a função drawName() como está
     const nameListElement = document.getElementById('nameList');
