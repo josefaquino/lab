@@ -48,3 +48,10 @@ li {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+.descricao-amigo {
+    font-style: italic;
+    color: #777;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
