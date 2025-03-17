@@ -72,8 +72,8 @@ li {
     border: 1.5px solid #e0e0e0; /* Borda mais suave para os list items */
     border-radius: 8px; /* Cantos mais arredondados para list items */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    align-items: center; /* Alinhamento VERTICAL centralizado dentro do LI */
+    justify-content: space-between; /* Alinhamento HORIZONTAL: Espaço entre os elementos */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra suave nos list items */
 }
 
@@ -101,15 +101,17 @@ li {
     background-color: #A78BFA; /* Roxo Lavanda (Paleta 2 - Primária) para botão "Remover" */
     color: white;
     border: none;
-    padding: 8px 15px; /* Ajustei o padding do botão "Remover" */
+    padding: 8px 15px; /* *** Padding CONSISTENTE *** */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.85em; /* Ajustei o tamanho da fonte do botão "Remover" */
+    font-size: 0.85em; /* *** Font-size CONSISTENTE *** */
     margin-left: 10px;
     cursor: pointer;
     border-radius: 6px; /* Cantos mais arredondados para o botão "Remover" */
     transition: background-color 0.3s ease; /* Transição suave no hover */
+    height: auto; /* Reset height if previously set */
+    line-height: normal; /* Reset line-height if previously set */
 }
 
 .remove-button:hover {
@@ -120,15 +122,17 @@ li {
     background-color: #90EE90; /* Verde Claro (Paleta 2 - Primária) para botão "Inserir" */
     color: #fff;
     border: none;
-    padding: 8px 15px; /* Ajustei o padding do botão "Inserir" */
+    padding: 8px 15px; /* *** Padding CONSISTENTE *** */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.85em; /* Ajustei o tamanho da fonte do botão "Inserir" */
+    font-size: 0.85em; /* *** Font-size CONSISTENTE *** */
     margin-left: 5px;
     cursor: pointer;
     border-radius: 6px; /* Cantos mais arredondados para o botão "Inserir" */
     transition: background-color 0.3s ease; /* Transição suave no hover */
+    height: auto; /* Reset height if previously set */
+    line-height: normal; /* Reset line-height if previously set */
 }
 
 .insert-description-button:hover {
