@@ -188,3 +188,48 @@ li {
         margin-bottom: 0; /* Remove margem inferior em telas maiores */
     }
 }
+
+/* *** ESTILOS PARA O MODAL *** */
+.modal {
+    display: none; /* Inicialmente escondido */
+    position: fixed; /* Fixo na tela */
+    z-index: 1; /* Para ficar por cima de outros elementos */
+    left: 0;
+    top: 0;
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    overflow: auto; /* Habilita scroll se o conteúdo for muito longo */
+    background-color: rgba(0,0,0,0.4); /* Fundo preto com opacidade */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Centraliza verticalmente e horizontalmente */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Largura do conteúdo do modal */
+    border-radius: 10px;
+    position: relative; /* Para posicionar o botão de fechar */
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#modalDescription {
+    margin-top: 20px;
+}
+
+.result-item {
+    cursor: pointer; /* Indica que o item é clicável */
+}

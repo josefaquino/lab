@@ -137,28 +137,73 @@ function addName() {
 }
 
 function drawName() {
-    // Mantém a função drawName() como está (sem alterações)
     const nameListElement = document.getElementById('nameList');
-    const nameElements = nameListElement.querySelectorAll('li span');
-    const names = Array.from(nameElements).map(span => span.textContent);
+    const nameItems = nameListElement.querySelectorAll('li');
+    const participants = Array.from(nameItems).map(li => {
+        const nameSpan = li.querySelector('span');
+        const descriptionElement = li.querySelector('.descricao-amigo');
+        return {
+            name: nameSpan.textContent,
+            description: descriptionElement ? descriptionElement.textContent : ''
+        };
+    });
     const resultList = document.getElementById('result-list');
     resultList.innerHTML = '';
 
-    if (names.length < 2) {
+    if (participants.length < 2) {
         alert("Adicione pelo menos dois amigos para o sorteio!");
         return;
     }
 
-    const shuffledNames = [...names].sort(() => Math.random() - 0.5);
-    for (let i = 0; i < shuffledNames.length; i++) {
-        const giver = shuffledNames[i];
-        const receiver = shuffledNames[(i + 1) % shuffledNames.length];
+    const shuffledParticipants = [...participants].sort(() => Math.random() - 0.5);
+    for (let i = 0; i < shuffledParticipants.length; i++) {
+        const giver = shuffledParticipants[i];
+        const receiver = shuffledParticipants[(i + 1) % shuffledParticipants.length];
         const listItem = document.createElement('li');
-        listItem.textContent = `${giver} vai presentear ${receiver}.`;
+        listItem.classList.add('result-item'); // Adicionando uma classe para facilitar a estilização
+
+        const giverNameSpan = document.createElement('span');
+        giverNameSpan.textContent = giver.name;
+
+        const receiverNameSpan = document.createElement('span');
+        receiverNameSpan.textContent = receiver.name;
+
+        listItem.innerHTML = `${giverNameSpan.textContent} vai presentear ${receiverNameSpan.textContent}.`;
+        listItem.dataset.descricao = giver.description; // Armazenando a descrição no atributo data
+
+        listItem.addEventListener('click', showDescriptionModal); // Adicionando o listener de clique
+
         resultList.appendChild(listItem);
     }
     const resultParagraph = document.getElementById('result');
     if (resultParagraph) {
         resultParagraph.innerHTML = '';
+    }
+}
+
+function showDescriptionModal(event) {
+    const description = event.currentTarget.dataset.descricao;
+    const modal = document.getElementById('descriptionModal');
+    const modalDescription = document.getElementById('modalDescription');
+    const closeButton = document.querySelector('.close-button');
+
+    if (modal && modalDescription) {
+        modalDescription.textContent = description;
+        modal.style.display = 'block'; // Tornando o modal visível
+    }
+
+    // Adicionando funcionalidade para fechar o modal
+    closeButton.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
+}
+
+function closeModal() {
+    const modal = document.getElementById('descriptionModal');
+    if (modal) {
+        modal.style.display = 'none'; // Escondendo o modal
     }
 }
