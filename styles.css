@@ -1,41 +1,51 @@
 body {
-    /* -family: Arial, sans-serif;*/
-    font-family: 'Roboto', sans-serif; /* Adiciona a fonte Roboto */
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f0f0f0;
-    
+    background-color: #F0F2F5; /* Fundo Cinza Muito Claro (Paleta 2) */
+    color: #444444; /* Texto principal Cinza Médio (Paleta 2) */
 }
 
 .container {
     text-align: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff; /* Mantém o fundo branco do container */
+    padding: 30px; /* Aumentei um pouco o padding */
+    border-radius: 12px; /* Cantos mais arredondados */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra mais suave e pronunciada */
+}
+
+.container h1 {
+    font-size: 2.8em; /* Aumentei um pouco o tamanho do título */
+    color: #FF7F50; /* Cor Coral (Paleta 2 - Acento) para o título */
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    margin-bottom: 25px; /* Aumentei a margem inferior do título */
+    letter-spacing: 1.5px; /* Aumentei o espaçamento entre letras */
+    text-transform: uppercase;
 }
 
 input {
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px; /* Aumentei o padding dos inputs */
+    margin: 12px; /* Aumentei a margem dos inputs */
+    border: 1.5px solid #ccc; /* Borda um pouco mais grossa */
+    border-radius: 6px; /* Cantos mais arredondados para inputs */
 }
 
 button {
-    padding: 10px 15px;
-    margin: 10px;
+    padding: 12px 20px; /* Aumentei o padding dos botões */
+    margin: 12px; /* Aumentei a margem dos botões */
     border: none;
-    border-radius: 4px;
-    background-color: #007bff;
+    border-radius: 6px; /* Cantos mais arredondados para botões */
+    background-color: #66B2FF; /* Azul Claro (Paleta 2 - Primária) para botões padrão */
     color: #fff;
     cursor: pointer;
+    font-weight: bold; /* Texto em negrito nos botões */
+    transition: background-color 0.3s ease; /* Transição suave no hover */
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #509BEF; /* Azul um pouco mais escuro no hover */
 }
 
 ul {
@@ -44,94 +54,98 @@ ul {
 }
 
 li {
-    background-color: #f9f9f9;
-    margin: 5px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    display: flex; /* Para alinhar o input e o botão na mesma linha */
-    align-items: center; /* Alinha verticalmente os itens dentro do li */
-    justify-content: space-between; /* Espaça os itens horizontalmente */
+    background-color: #fff; /* Mantém o fundo branco dos list items */
+    margin: 8px 0; /* Aumentei um pouco a margem vertical dos list items */
+    padding: 15px; /* Aumentei o padding dos list items */
+    border: 1.5px solid #e0e0e0; /* Borda mais suave para os list items */
+    border-radius: 8px; /* Cantos mais arredondados para list items */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra suave nos list items */
 }
 
 .descricao-amigo {
     font-style: italic;
-    color: #777;
-    margin-top: 5px;
-    font-size: 0.9em;
+    color: #777; /* Cor cinza para a descrição, pode ser ajustada se necessário */
+    margin-top: 8px; /* Aumentei a margem superior da descrição */
+    font-size: 0.95em; /* Ajustei um pouco o tamanho da fonte da descrição */
 }
 
 .descricao-input {
-    width: 70%; /* Ocupa 70% da largura disponível dentro do li */
-    padding: 8px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    width: 70%;
+    padding: 10px; /* Aumentei o padding do input de descrição */
+    margin-top: 8px; /* Aumentei a margem superior do input de descrição */
+    margin-bottom: 8px; /* Aumentei a margem inferior do input de descrição */
+    border: 1.5px solid #ccc; /* Borda um pouco mais grossa para o input de descrição */
+    border-radius: 6px; /* Cantos mais arredondados para o input de descrição */
     box-sizing: border-box;
-    font-size: 0.9em;
-    margin-right: 10px; /* Adiciona um espaço à direita do input para separar do botão */
+    font-size: 0.95em; /* Ajustei um pouco o tamanho da fonte do input de descrição */
+    margin-right: 10px;
 }
 
 .remove-button {
-    background-color: #f44336;
+    background-color: #A78BFA; /* Roxo Lavanda (Paleta 2 - Primária) para botão "Remover" */
     color: white;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 15px; /* Ajustei o padding do botão "Remover" */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.8em;
+    font-size: 0.85em; /* Ajustei o tamanho da fonte do botão "Remover" */
     margin-left: 10px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px; /* Cantos mais arredondados para o botão "Remover" */
+    transition: background-color 0.3s ease; /* Transição suave no hover */
 }
 
 .remove-button:hover {
-    background-color: #d32f2f;
+    background-color: #9377E6; /* Roxo um pouco mais escuro no hover */
 }
 
 .insert-description-button {
-    background-color: #4CAF50; /* Verde */
-    color: white;
+    background-color: #90EE90; /* Verde Claro (Paleta 2 - Primária) para botão "Inserir" */
+    color: #fff;
     border: none;
-    padding: 5px 10px;
+    padding: 8px 15px; /* Ajustei o padding do botão "Inserir" */
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 0.8em;
-    margin-left: 5px; /* Menos margem que o "Remover" */
+    font-size: 0.85em; /* Ajustei o tamanho da fonte do botão "Inserir" */
+    margin-left: 5px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px; /* Cantos mais arredondados para o botão "Inserir" */
+    transition: background-color 0.3s ease; /* Transição suave no hover */
 }
 
 .insert-description-button:hover {
-    background-color: #45a049; /* Verde mais escuro no hover */
+    background-color: #80E080; /* Verde um pouco mais escuro no hover */
 }
 
-.insert-description-button:disabled { /* Estilo para botão desabilitado */
-    background-color: #a9a9a9; /* Cinza claro */
-    cursor: not-allowed; /* Indica que não pode clicar */
+.insert-description-button:disabled {
+    background-color: #a9a9a9;
+    cursor: not-allowed;
 }
 
 #result-container {
-    margin-top: 20px;
-    border-top: 1px solid #ccc; /* Adiciona uma linha horizontal acima do resultado */
-    padding-top: 10px;
+    margin-top: 30px; /* Aumentei a margem superior do container de resultado */
+    border-top: 2px solid #e0e0e0; /* Linha divisória mais destacada */
+    padding-top: 15px; /* Aumentei o padding superior do container de resultado */
+}
+
+#result-container h2 {
+    font-size: 1.5em; /* Aumentei o tamanho do título do resultado */
+    margin-bottom: 15px; /* Aumentei a margem inferior do título do resultado */
+    color: #555; /* Cor um pouco mais escura para o título do resultado */
 }
 
 #result-list {
-    list-style-type: none; /* Remove os marcadores de lista padrão */
+    list-style-type: none;
     padding: 0;
 }
 
 #result-list li {
-    margin-bottom: 8px; /* Espaçamento entre os itens da lista */
-    font-size: 1.1em; /* Aumenta um pouco o tamanho da fonte do resultado */
-}
-
-#result-container h2 {
-    font-size: 1.3em;
-    margin-bottom: 10px;
-    color: #333; /* Cor mais escura para o título do resultado */
+    margin-bottom: 10px; /* Aumentei a margem inferior dos itens do resultado */
+    font-size: 1.15em; /* Aumentei um pouco o tamanho da fonte dos itens do resultado */
+    color: #333; /* Cor mais escura para os itens do resultado */
 }
