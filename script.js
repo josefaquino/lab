@@ -1,4 +1,4 @@
-function getAIDescription(name) {
+function getAIDescription(name, keywords) {
     // *** SIMULAÇÃO APRIMORADA DA IA GERANDO DESCRIÇÃO ***
     // *** VERSÃO COM FRASES VARIADAS E MAIS DINÂMICAS ***
 
@@ -44,14 +44,19 @@ function getAIDescription(name) {
         setTimeout(() => {
             let description = "";
             if (name === "Ana") {
-                description = descricoesAna[Math.floor(Math.random() * descricoesAna.length)]; // Escolhe aleatoriamente de descricoesAna
+                description = descricoesAna[Math.floor(Math.random() * descricoesAna.length)];
             } else if (name === "Carlos") {
-                description = descricoesCarlos[Math.floor(Math.random() * descricoesCarlos.length)]; // Escolhe aleatoriamente de descricoesCarlos
+                description = descricoesCarlos[Math.floor(Math.random() * descricoesCarlos.length)];
             } else if (name === "Maria") {
-                description = descricoesMaria[Math.floor(Math.random() * descricoesMaria.length)]; // Escolhe aleatoriamente de descricoesMaria
+                description = descricoesMaria[Math.floor(Math.random() * descricoesMaria.length)];
+            } else if (keywords) {
+                // *** AQUI ENTRARÁ A LÓGICA PARA USAR AS PALAVRAS-CHAVE ***
+                // Por enquanto, vamos apenas adicionar um texto informando que as palavras-chave foram recebidas
+                description = `[nome] está no Amigo Secreto! Palavras-chave: ${keywords}`;
+                description = description.replace("[nome]", name);
             } else {
-                const fraseGenerica = frasesCriativas[Math.floor(Math.random() * frasesCriativas.length)]; // Escolhe frase genérica aleatoriamente
-                description = fraseGenerica.replace("[nome]", name); // Substitui [nome] pelo nome real
+                const fraseGenerica = frasesCriativas[Math.floor(Math.random() * frasesCriativas.length)];
+                description = fraseGenerica.replace("[nome]", name);
             }
             resolve(description);
         }, 1500);
@@ -69,6 +74,17 @@ function addName() {
         const nameSpan = document.createElement("span");
         nameSpan.textContent = name;
         li.appendChild(nameSpan);
+
+        // *** NOVO: Container para palavras-chave ***
+        const keywordsContainer = document.createElement("div");
+        keywordsContainer.classList.add("keywords-container");
+
+        const keywordsInput = document.createElement("input");
+        keywordsInput.type = "text";
+        keywordsInput.classList.add("keywords-input");
+        keywordsInput.placeholder = "Palavras-chave (opcional)";
+        keywordsContainer.appendChild(keywordsInput);
+        li.appendChild(keywordsContainer);
 
         // *** NOVO: Container para a descrição ***
         const descriptionContainer = document.createElement("div");
@@ -105,15 +121,18 @@ function addName() {
         nameInput.value = "";
         nameInput.focus();
 
-        // *** NOVO: Simula a obtenção da descrição da IA ***
-        descriptionInput.placeholder = "Gerando descrição..."; // MODIFICADO: Placeholder durante a geração
-        getAIDescription(name).then(creativeDescription => { // Chama a função de simulação da IA
-            descriptionInput.value = creativeDescription; // Preenche o input com a descrição "gerada"
-            descriptionInput.placeholder = "Pedir descrição para IA e colar aqui"; // Restaura o placeholder original (opcional)
-            insertDescriptionButton.disabled = false; // Habilita o botão "Inserir" novamente após receber a descrição
+        // *** NOVO: Obter as palavras-chave ***
+        const keywords = keywordsInput.value.trim();
+
+        // *** NOVO: Simula a obtenção da descrição da IA com palavras-chave ***
+        descriptionInput.placeholder = "Gerando descrição...";
+        getAIDescription(name, keywords).then(creativeDescription => {
+            descriptionInput.value = creativeDescription;
+            descriptionInput.placeholder = "Pedir descrição para IA e colar aqui";
+            insertDescriptionButton.disabled = false;
         });
 
-         // *** Evento de clique para o botão "Inserir Descrição" (mantém como antes, mas agora habilitado dinamicamente) ***
+         // *** Evento de clique para o botão "Inserir Descrição" (mantém como antes) ***
         insertDescriptionButton.addEventListener('click', function() {
             const descriptionText = descriptionInput.value.trim();
             if (descriptionText !== "") {
@@ -160,7 +179,7 @@ function drawName() {
         const giver = shuffledParticipants[i];
         const receiver = shuffledParticipants[(i + 1) % shuffledParticipants.length];
         const listItem = document.createElement('li');
-        listItem.classList.add('result-item'); // Adicionando uma classe para facilitar a estilização
+        listItem.classList.add('result-item');
 
         const giverNameSpan = document.createElement('span');
         giverNameSpan.textContent = giver.name;
@@ -169,9 +188,9 @@ function drawName() {
         receiverNameSpan.textContent = receiver.name;
 
         listItem.innerHTML = `${giverNameSpan.textContent} vai presentear ${receiverNameSpan.textContent}.`;
-        listItem.dataset.descricao = giver.description; // Armazenando a descrição no atributo data
+        listItem.dataset.descricao = giver.description;
 
-        listItem.addEventListener('click', showDescriptionModal); // Adicionando o listener de clique
+        listItem.addEventListener('click', showDescriptionModal);
 
         resultList.appendChild(listItem);
     }
@@ -189,10 +208,9 @@ function showDescriptionModal(event) {
 
     if (modal && modalDescription) {
         modalDescription.textContent = description;
-        modal.style.display = 'block'; // Tornando o modal visível
+        modal.style.display = 'block';
     }
 
-    // Adicionando funcionalidade para fechar o modal
     closeButton.addEventListener('click', closeModal);
     modal.addEventListener('click', function(event) {
         if (event.target === modal) {
@@ -204,6 +222,6 @@ function showDescriptionModal(event) {
 function closeModal() {
     const modal = document.getElementById('descriptionModal');
     if (modal) {
-        modal.style.display = 'none'; // Escondendo o modal
+        modal.style.display = 'none';
     }
 }

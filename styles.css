@@ -75,6 +75,28 @@ li {
     align-items: center; /* Alinhamento VERTICAL centralizado dentro do LI */
     justify-content: space-between; /* Alinhamento HORIZONTAL: Espaço entre os elementos */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08); /* Sombra suave nos list items */
+    flex-direction: column; /* Alinha nome, keywords e descrição verticalmente */
+    align-items: flex-start; /* Alinha os itens à esquerda dentro do LI */
+}
+
+li > span { /* Estiliza o span do nome para ocupar a largura total se necessário */
+    width: 100%;
+    margin-bottom: 5px; /* Espaço entre o nome e as keywords */
+}
+
+.keywords-container {
+    margin-top: 5px; /* Adiciona um pouco de espaço acima do input de palavras-chave */
+    width: 100%; /* Ocupa a largura total disponível dentro do li */
+}
+
+.keywords-input {
+    width: calc(100% - 16px); /* Ocupa a largura total subtraindo o padding */
+    padding: 8px;
+    margin-bottom: 5px; /* Adiciona um pouco de espaço abaixo do input de palavras-chave */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Garante que padding e border não aumentem a largura total */
+    font-size: 0.9em;
 }
 
 .descricao-amigo {
@@ -82,11 +104,12 @@ li {
     color: #777; /* Cor cinza para a descrição, pode ser ajustada se necessário */
     margin-top: 8px; /* Aumentei a margem superior da descrição */
     font-size: 0.95em; /* Ajustei um pouco o tamanho da fonte da descrição */
-    margin-left: 20px; /* Adicionei margem esquerda para separar do nome */
+    margin-left: 0; /* Remove a margem esquerda, já que estamos alinhando à esquerda */
+    width: 100%; /* Garante que a descrição ocupe a largura total */
 }
 
 .descricao-input {
-    width: 70%;
+    width: calc(100% - 16px); /* Ocupa a largura total subtraindo o padding */
     padding: 10px; /* Aumentei o padding do input de descrição */
     margin-top: 8px; /* Aumentei a margem superior do input de descrição */
     margin-bottom: 8px; /* Aumentei a margem inferior do input de descrição */
@@ -112,6 +135,7 @@ li {
     transition: background-color 0.3s ease; /* Transição suave no hover */
     height: auto; /* Reset height if previously set */
     line-height: normal; /* Reset line-height if previously set */
+    margin-top: 10px; /* Adiciona um pouco de espaço acima do botão remover */
 }
 
 .remove-button:hover {
@@ -165,6 +189,7 @@ li {
     margin-bottom: 10px; /* Aumentei a margem inferior dos itens do resultado */
     font-size: 1.15em; /* Aumentei um pouco o tamanho da fonte dos itens do resultado */
     color: #333; /* Cor mais escura para os itens do resultado */
+    cursor: pointer; /* Indica que o item é clicável */
 }
 
 .descricao-container {
@@ -172,6 +197,7 @@ li {
     align-items: center; /* Alinhamento vertical */
     flex-direction: column; /* Input e botão em coluna em telas menores */
     align-items: stretch; /* Esticar input e botão para largura total em coluna */
+    width: 100%; /* Garante que o container ocupe a largura total */
 }
 
 @media (min-width: 600px) { /* Media query para telas maiores */
