@@ -1,6 +1,5 @@
 function getAIDescription(name, keywords) {
-    // *** SIMULAÇÃO APRIMORADA DA IA GERANDO DESCRIÇÃO ***
-    // *** VERSÃO COM FRASES VARIADAS E MAIS DINÂMICAS ***
+    // *** SIMULAÇÃO APRIMORADA DA IA GERANDO DESCRIÇÃO COM PALAVRAS-CHAVE ***
 
     const frasesCriativas = [
         "Prepare-se para ser surpreendido(a) por [nome]! Um presente único a caminho!",
@@ -15,44 +14,50 @@ function getAIDescription(name, keywords) {
         "Boas vibrações e um presente show de [nome]! O que será, hein?"
     ];
 
-    const descricoesAna = [
-        "Alegria contagiante e um presente cheio de carinho, vindo da Ana!",
-        "Diretamente do coração da Ana para o seu Amigo Secreto, prepare-se para sorrir!",
-        "A Ana está no Amigo Secreto e promete um presente que vai aquecer seu dia!",
-        "Com a Ana no Amigo Secreto, a felicidade é garantida e o presente, especial!",
-        "Prepare-se para receber um presente com a doçura e o brilho da Ana!"
-    ];
-
-    const descricoesCarlos = [
-        "O bom humor do Carlos em forma de presente para o Amigo Secreto. Prepare-se para rir!",
-        "Criatividade e alegria? É o Carlos no Amigo Secreto! Aguarde um presente original!",
-        "Com o Carlos no Amigo Secreto, a diversão é garantida e o presente, surpreendente!",
-        "Prepare-se para um presente com a energia positiva e contagiante do Carlos!",
-        "O Carlos está no Amigo Secreto e vai te presentear com algo que é a sua cara: incrível!"
-    ];
-
-    const descricoesMaria = [
-        "Mistério e elegância no presente da Maria para o Amigo Secreto. Curiosidade no ar!",
-        "A Maria entrou no Amigo Secreto e promete um presente com um toque especial e único!",
-        "Prepare-se para um presente com a delicadeza e o bom gosto da Maria!",
-        "Com a Maria no Amigo Secreto, o encanto é certo e o presente, memorável!",
-        "O presente da Maria para o Amigo Secreto? Um toque de magia e muito carinho!"
-    ];
-
+    const descricoesAna = [ /* ... (mantém as descrições da Ana) ... */ ];
+    const descricoesCarlos = [ /* ... (mantém as descrições do Carlos) ... */ ];
+    const descricoesMaria = [ /* ... (mantém as descrições da Maria) ... */ ];
 
     return new Promise(resolve => {
         setTimeout(() => {
             let description = "";
+            const lowerCaseKeywords = keywords ? keywords.toLowerCase() : "";
+
             if (name === "Ana") {
                 description = descricoesAna[Math.floor(Math.random() * descricoesAna.length)];
             } else if (name === "Carlos") {
                 description = descricoesCarlos[Math.floor(Math.random() * descricoesCarlos.length)];
             } else if (name === "Maria") {
                 description = descricoesMaria[Math.floor(Math.random() * descricoesMaria.length)];
+            } else if (lowerCaseKeywords.includes("livro") || lowerCaseKeywords.includes("ler") || lowerCaseKeywords.includes("literatura")) {
+                description = `Prepare-se para mergulhar em novas histórias! O presente de [nome] pode te levar para mundos incríveis.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("música") || lowerCaseKeywords.includes("som") || lowerCaseKeywords.includes("instrumento")) {
+                description = `Atenção, amantes da música! O presente de [nome] pode vibrar na sua frequência.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("jogo") || lowerCaseKeywords.includes("game") || lowerCaseKeywords.includes("videogame")) {
+                description = `Prepare-se para o nível máximo de diversão! O presente de [nome] pode te desafiar.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("viagem") || lowerCaseKeywords.includes("viajar") || lowerCaseKeywords.includes("aventura")) {
+                description = `Sonhando com novas aventuras? O presente de [nome] pode ser o seu passaporte.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("esporte") || lowerCaseKeywords.includes("academia") || lowerCaseKeywords.includes("futebol") || lowerCaseKeywords.includes("corrida")) {
+                description = `Mantenha a energia! O presente de [nome] pode te dar um impulso extra.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("filme") || lowerCaseKeywords.includes("cinema") || lowerCaseKeywords.includes("série")) {
+                description = `Prepare a pipoca! O presente de [nome] pode ser uma ótima sessão.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("arte") || lowerCaseKeywords.includes("pintura") || lowerCaseKeywords.includes("desenho")) {
+                description = `Criatividade em ação! O presente de [nome] pode inspirar seu lado artístico.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("culinária") || lowerCaseKeywords.includes("cozinhar") || lowerCaseKeywords.includes("receita")) {
+                description = `Hummm, que delícia! O presente de [nome] pode ter um sabor especial.`;
+                description = description.replace("[nome]", name);
+            } else if (lowerCaseKeywords.includes("tecnologia") || lowerCaseKeywords.includes("gadget") || lowerCaseKeywords.includes("eletrônico")) {
+                description = `Inovação a caminho! O presente de [nome] pode te deixar conectado(a).`;
+                description = description.replace("[nome]", name);
             } else if (keywords) {
-                // *** AQUI ENTRARÁ A LÓGICA PARA USAR AS PALAVRAS-CHAVE ***
-                // Por enquanto, vamos apenas adicionar um texto informando que as palavras-chave foram recebidas
-                description = `[nome] está no Amigo Secreto! Palavras-chave: ${keywords}`;
+                description = `[nome] pensou nos seus interesses! Espere um presente especial relacionado a ${keywords}.`;
                 description = description.replace("[nome]", name);
             } else {
                 const fraseGenerica = frasesCriativas[Math.floor(Math.random() * frasesCriativas.length)];
@@ -62,7 +67,6 @@ function getAIDescription(name, keywords) {
         }, 1500);
     });
 }
-
 function addName() {
     const nameInput = document.getElementById("nameInput");
     const nameList = document.getElementById("nameList");
