@@ -1,24 +1,62 @@
 function getAIDescription(name) {
-    // *** SIMULAÇÃO SIMPLIFICADA DA IA GERANDO DESCRIÇÃO ***
-    // *** VERSÃO INICIAL - DESCRIÇÕES FIXAS E GENÉRICAS ***
+    // *** SIMULAÇÃO APRIMORADA DA IA GERANDO DESCRIÇÃO ***
+    // *** VERSÃO COM FRASES VARIADAS E MAIS DINÂMICAS ***
 
-    return new Promise(resolve => { // Retorna uma Promise para simular tempo de espera
+    const frasesCriativas = [
+        "Prepare-se para ser surpreendido(a) por [nome]! Um presente único a caminho!",
+        "[nome] está no Amigo Secreto! Espere algo divertido e memorável!",
+        "Diretamente da lista VIP do Amigo Secreto, [nome] vai te presentear!",
+        "Alerta de presente incrível vindo de [nome]! Prepare o coração (e o sorriso)!",
+        "Dizem por aí que o amigo secreto de [nome] vai amar o presente... Será você?",
+        "Com [nome] no Amigo Secreto, a alegria e as boas surpresas estão garantidas!",
+        "Segure a ansiedade! [nome] está preparando um presente especial para você!",
+        "Um toque de mistério e muita animação: [nome] no Amigo Secreto é pura diversão!",
+        "Deixe a curiosidade te guiar... [nome] é seu amigo secreto este ano!",
+        "Boas vibrações e um presente show de [nome]! O que será, hein?"
+    ];
+
+    const descricoesAna = [
+        "Alegria contagiante e um presente cheio de carinho, vindo da Ana!",
+        "Diretamente do coração da Ana para o seu Amigo Secreto, prepare-se para sorrir!",
+        "A Ana está no Amigo Secreto e promete um presente que vai aquecer seu dia!",
+        "Com a Ana no Amigo Secreto, a felicidade é garantida e o presente, especial!",
+        "Prepare-se para receber um presente com a doçura e o brilho da Ana!"
+    ];
+
+    const descricoesCarlos = [
+        "O bom humor do Carlos em forma de presente para o Amigo Secreto. Prepare-se para rir!",
+        "Criatividade e alegria? É o Carlos no Amigo Secreto! Aguarde um presente original!",
+        "Com o Carlos no Amigo Secreto, a diversão é garantida e o presente, surpreendente!",
+        "Prepare-se para um presente com a energia positiva e contagiante do Carlos!",
+        "O Carlos está no Amigo Secreto e vai te presentear com algo que é a sua cara: incrível!"
+    ];
+
+    const descricoesMaria = [
+        "Mistério e elegância no presente da Maria para o Amigo Secreto. Curiosidade no ar!",
+        "A Maria entrou no Amigo Secreto e promete um presente com um toque especial e único!",
+        "Prepare-se para um presente com a delicadeza e o bom gosto da Maria!",
+        "Com a Maria no Amigo Secreto, o encanto é certo e o presente, memorável!",
+        "O presente da Maria para o Amigo Secreto? Um toque de magia e muito carinho!"
+    ];
+
+
+    return new Promise(resolve => {
         setTimeout(() => {
             let description = "";
             if (name === "Ana") {
-                description = "Uma amiga secreta que ilumina qualquer ambiente com sua alegria!";
+                description = descricoesAna[Math.floor(Math.random() * descricoesAna.length)]; // Escolhe aleatoriamente de descricoesAna
             } else if (name === "Carlos") {
-                description = "Prepare-se para boas risadas e um presente criativo do Carlos!";
+                description = descricoesCarlos[Math.floor(Math.random() * descricoesCarlos.length)]; // Escolhe aleatoriamente de descricoesCarlos
             } else if (name === "Maria") {
-                description = "Mistério e carinho definem o presente da Maria para o amigo secreto.";
+                description = descricoesMaria[Math.floor(Math.random() * descricoesMaria.length)]; // Escolhe aleatoriamente de descricoesMaria
             } else {
-                description = `Um presente especial de ${name} para um amigo sortudo!`; // Descrição genérica
+                const fraseGenerica = frasesCriativas[Math.floor(Math.random() * frasesCriativas.length)]; // Escolhe frase genérica aleatoriamente
+                description = fraseGenerica.replace("[nome]", name); // Substitui [nome] pelo nome real
             }
-            resolve(description); // Resolve a Promise com a descrição após o delay
-        }, 1500); // Delay de 1.5 segundos (simulando o tempo de "processamento" da IA)
+            resolve(description);
+        }, 1500);
     });
 }
-
 
 function addName() {
     const nameInput = document.getElementById("nameInput");
