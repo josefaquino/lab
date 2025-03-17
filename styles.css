@@ -82,6 +82,7 @@ li {
     color: #777; /* Cor cinza para a descrição, pode ser ajustada se necessário */
     margin-top: 8px; /* Aumentei a margem superior da descrição */
     font-size: 0.95em; /* Ajustei um pouco o tamanho da fonte da descrição */
+    margin-left: 20px; /* Adicionei margem esquerda para separar do nome */
 }
 
 .descricao-input {
@@ -160,4 +161,26 @@ li {
     margin-bottom: 10px; /* Aumentei a margem inferior dos itens do resultado */
     font-size: 1.15em; /* Aumentei um pouco o tamanho da fonte dos itens do resultado */
     color: #333; /* Cor mais escura para os itens do resultado */
+}
+
+.descricao-container {
+    display: flex; /* Para alinhar input e botão horizontalmente */
+    align-items: center; /* Alinhamento vertical */
+    flex-direction: column; /* Input e botão em coluna em telas menores */
+    align-items: stretch; /* Esticar input e botão para largura total em coluna */
+}
+
+@media (min-width: 600px) { /* Media query para telas maiores */
+    .descricao-container {
+        flex-direction: row; /* Input e botão em linha em telas maiores */
+        align-items: center; /* Alinhamento vertical centralizado em linha */
+    }
+    .descricao-input {
+        width: 70%; /* Largura de 70% do container em telas maiores */
+        margin-right: 10px; /* Margem direita para separar do botão em telas maiores */
+        margin-bottom: 0; /* Remove margem inferior em telas maiores */
+    }
+    .insert-description-button {
+        margin-bottom: 0; /* Remove margem inferior em telas maiores */
+    }
 }

@@ -10,11 +10,14 @@ function addName() {
         nameSpan.textContent = name;
         li.appendChild(nameSpan);
 
-        // *** NOVO: Campo de input para descrição ***
+        // *** NOVO: Container para a descrição (vai conter o input e depois o <p>) ***
+        const descriptionContainer = document.createElement("div");
+        descriptionContainer.classList.add("descricao-container"); // Classe para agrupar input e descrição
+
+        // *** Campo de input para descrição ***
         const descriptionInput = document.createElement("input");
         descriptionInput.type = "text";
         descriptionInput.classList.add("descricao-input");
-        // *** MODIFICADO: Placeholder inicial para "Carregando descrição..." ***
         descriptionInput.placeholder = "Carregando descrição...";
 
         // *** Botão "Inserir Descrição" ***
@@ -24,13 +27,35 @@ function addName() {
 
         // *** Evento de clique para o botão "Inserir Descrição" ***
         insertDescriptionButton.addEventListener('click', function() {
-            descriptionInput.placeholder = "Descrição Inserida!"; // Muda o placeholder para indicar sucesso
-            descriptionInput.disabled = true;
-            insertDescriptionButton.disabled = true;
+            const descriptionText = descriptionInput.value.trim(); // Pega o texto do input
+            if (descriptionText !== "") {
+                // *** NOVO: Cria um parágrafo para exibir a descrição ***
+                const descriptionP = document.createElement("p");
+                descriptionP.classList.add("descricao-amigo");
+                descriptionP.textContent = descriptionText;
+
+                // *** NOVO: Substitui o input pelo parágrafo de descrição ***
+                descriptionContainer.innerHTML = ''; // Limpa o container
+                descriptionContainer.appendChild(descriptionP); // Adiciona o parágrafo
+
+                insertDescriptionButton.disabled = true; // Desabilita o botão "Inserir"
+            } else {
+                alert("Por favor, insira uma descrição antes de clicar em 'Inserir'.");
+            }
         });
 
-        li.appendChild(descriptionInput);
-        li.appendChild(insertDescriptionButton);
+        descriptionContainer.appendChild(descriptionInput); // Adiciona o input ao container
+        descriptionContainer.appendChild(insertDescriptionButton); // Adiciona o botão ao container
+        li.appendChild(descriptionContainer); // Adiciona o container ao LI
+
+        // *** Botão "Remover" (mantendo da versão anterior) ***
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remover";
+        removeButton.classList.add("remove-button");
+        removeButton.addEventListener('click', function() {
+            li.remove();
+        });
+        li.appendChild(removeButton);
 
         nameList.prepend(li);
 
@@ -42,12 +67,10 @@ function addName() {
 }
 
 function drawName() {
-    // Modificação para funcionar com a lista de nomes no DOM diretamente
+    // Mantém a função drawName() como está (sem alterações)
     const nameListElement = document.getElementById('nameList');
-    const nameElements = nameListElement.querySelectorAll('li span'); // Pega os spans dentro dos LIs para pegar os nomes
+    const nameElements = nameListElement.querySelectorAll('li span');
     const names = Array.from(nameElements).map(span => span.textContent);
-    const resultList = document.getElementById('result-list'); // Pega a lista de resultados UL
-    resultList.innerHTML = ''; // Limpa a lista de resultados antes de gerar novamente
 
     if (names.length < 2) {
         alert("Adicione pelo menos dois amigos para o sorteio!");
@@ -55,16 +78,11 @@ function drawName() {
     }
 
     const shuffledNames = [...names].sort(() => Math.random() - 0.5);
+    let resultText = "";
     for (let i = 0; i < shuffledNames.length; i++) {
         const giver = shuffledNames[i];
-        const receiver = shuffledNames[(i + 1) % shuffledNames.length]; // Pega o próximo nome, e volta para o primeiro no final
-        const listItem = document.createElement('li'); // Cria um LI para cada par
-        listItem.textContent = `${giver} vai presentear ${receiver}.`; // Define o texto do LI
-        resultList.appendChild(listItem); // Adiciona o LI à lista de resultados UL
+        const receiver = shuffledNames[(i + 1) % shuffledNames.length];
+        resultText += `${giver} vai presentear ${receiver}.<br>`;
     }
-    // Remove o texto antigo do parágrafo de resultado (se ainda existir)
-    const resultParagraph = document.getElementById('result');
-    if (resultParagraph) {
-        resultParagraph.innerHTML = '';
-    }
+    document.getElementById("result").innerHTML = resultText;
 }
