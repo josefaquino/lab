@@ -3,9 +3,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Altura mínima de 100% da viewport */
     background-color: #F0F2F5; /* Fundo Cinza Muito Claro (Paleta 2) */
     color: #444444; /* Texto principal Cinza Médio (Paleta 2) */
+    overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
 }
 
 .container {
@@ -14,6 +15,7 @@ body {
     padding: 30px; /* Aumentei um pouco o padding */
     border-radius: 12px; /* Cantos mais arredondados */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra mais suave e pronunciada */
+    /* REMOVIDO: height: 100vh; */
 }
 
 .container h1 {
@@ -23,6 +25,16 @@ body {
     margin-bottom: 25px; /* Aumentei a margem inferior do título */
     letter-spacing: 1.5px; /* Aumentei o espaçamento entre letras */
     text-transform: uppercase;
+}
+
+.container img {
+    margin-top: 30px; /* Ajuste este valor conforme necessário */
+    margin-bottom: 20px; /* Adicione também uma margem inferior para separar do título */
+    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do container */
+    height: auto; /* Mantém a proporção da imagem */
+    display: block; /* Para que a margem vertical funcione corretamente */
+    margin-left: auto; /* Centraliza horizontalmente */
+    margin-right: auto; /* Centraliza horizontalmente */
 }
 
 input {
