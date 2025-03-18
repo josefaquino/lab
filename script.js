@@ -1,7 +1,7 @@
 async function getAIDescription(name, keywords) {
     const apiKey = 'AIzaSyCg6VKxU887z4QTfLBbNorlWx0asVUQmp0'; // SUA CHAVE DE API
-    const model = 'gemini-pro'; // Ou outro modelo que você preferir
-
+    const model = 'gemini-2.0-flash'; // Ou outro modelo que você preferir
+    
     const prompt = `Gere uma descrição criativa e curta para um amigo secreto chamado ${name}. Palavras-chave (opcional): ${keywords}. Seja conciso e envolvente.`;
 
     try {
