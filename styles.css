@@ -19,22 +19,12 @@ body {
 }
 
 .container h1 {
-    font-size: 2.8em; /* Aumentei um pouco o tamanho do título */
-    color: #FF7F50; /* Cor Coral (Paleta 2 - Acento) para o título */
+    font-size: 2.2em; /* Tamanho menor */
+    color: #66B2FF; /* Azul mais suave */
     text-shadow: 2px 2px 3px rgba(0,0,0,0.1);
-    margin-bottom: 25px; /* Aumentei a margem inferior do título */
-    letter-spacing: 1.5px; /* Aumentei o espaçamento entre letras */
+    margin-bottom: 25px;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
-}
-
-.container img {
-    margin-top: 30px; /* Ajuste este valor conforme necessário */
-    margin-bottom: 20px; /* Adicione também uma margem inferior para separar do título */
-    max-width: 100%; /* Garante que a imagem não ultrapasse a largura do container */
-    height: auto; /* Mantém a proporção da imagem */
-    display: block; /* Para que a margem vertical funcione corretamente */
-    margin-left: auto; /* Centraliza horizontalmente */
-    margin-right: auto; /* Centraliza horizontalmente */
 }
 
 input {
