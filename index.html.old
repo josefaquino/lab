@@ -27,7 +27,7 @@
                 <span class="close-button">&times;</span>
                 <h3>Descrição do Amigo Secreto:</h3>
                 <p id="modalDescription"></p>
-                <p id="modalMessage"></p> </div>
+            </div>
         </div>
 
     </div>
