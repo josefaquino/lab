@@ -121,6 +121,56 @@ async function addName() {
     }
 }
 
+function importNames() {
+    const fileInput = document.getElementById('fileInput');
+    const nameList = document.getElementById('nameList');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            const fileContent = event.target.result;
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            let names =;
+
+            if (fileExtension === 'txt') {
+                names = fileContent.split('\n').map(name => name.trim()).filter(name => name !== '');
+            } else if (fileExtension === 'csv') {
+                // Assume que os nomes estão na primeira coluna de cada linha
+                names = fileContent.split('\n').map(row => row.split(',')[0]?.trim()).filter(name => name !== '');
+                // Remove a primeira linha se ela parecer ser um cabeçalho (opcional)
+                if (names.length > 0 && names[0].toLowerCase().includes('nome')) {
+                    names.shift();
+                }
+            } else {
+                alert('Formato de arquivo não suportado. Use .txt ou .csv.');
+                return;
+            }
+
+            // Limpa a lista de nomes atual
+            nameList.innerHTML = '';
+
+            // Adiciona os nomes da lista
+            names.forEach(name => {
+                const li = document.createElement('li');
+                li.textContent = name;
+                nameList.appendChild(li);
+            });
+
+            alert(`Importados ${names.length} nomes.`);
+        };
+
+        reader.onerror = function() {
+            alert('Erro ao ler o arquivo.');
+        };
+
+        reader.readAsText(file);
+    } else {
+        alert('Por favor, selecione um arquivo.');
+    }
+}
+
 function drawName() {
     const nameListElement = document.getElementById('nameList');
     const nameItems = nameListElement.querySelectorAll('li');
