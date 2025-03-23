@@ -1,0 +1,12 @@
+{
+  "name": "amigo-secreto-ia",
+  "version": "1.0.0",
+  "description": "Amigo Secreto com IA usando Google Gemini",
+  "main": "script.js",
+  "scripts": {
+    "start": "node script.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.7.0"
+  }
+}
