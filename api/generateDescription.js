@@ -23,7 +23,8 @@ module.exports = async (req, res) => {
     const prompt = `Gere uma descrição criativa e curta para um amigo secreto chamado ${name}. Palavras-chave (opcional): ${keywords}. Seja conciso e envolvente.`;
 
     try {
-      const geminiModel = genAI.getModel({ model });
+      // const geminiModel = genAI.getModel({ model });
+      const geminiModel = genAI.generativeModel({ modelName: model });
       const result = await geminiModel.generateContent([prompt]);
       const response = result.response;
       const description = response.candidates[0].content.parts[0].text;
@@ -37,3 +38,5 @@ module.exports = async (req, res) => {
     res.status(405).json({ error: "Método não permitido. Use POST." });
   }
 };
+
+const geminiModel = genAI.generativeModel({ modelName: model });
