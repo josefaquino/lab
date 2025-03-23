@@ -19,26 +19,18 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: "O nome é obrigatório." });
     }
 
-    const descriptionPrompt = `Gere uma descrição criativa e curta para um amigo secreto chamado ${name}. Palavras-chave (opcional): ${keywords}. Seja conciso e envolvente.`;
-    const messagePrompt = `Gere uma mensagem curta e amigável para um amigo secreto chamado ${name}. A mensagem deve ser algo que o presenteador poderia dizer ao revelar o presente.`;
+    const prompt = `Gere uma descrição criativa e curta para um amigo secreto chamado ${name}. Palavras-chave (opcional): ${keywords}. Seja conciso e envolvente.`;
 
     try {
       const geminiModel = genAI.getModel({ model });
+      const result = await geminiModel.generateContent([prompt]);
+      const response = result.response;
+      const description = response.candidates[0].content.parts[0].text;
 
-      // Primeira chamada para gerar a descrição
-      const descriptionResult = await geminiModel.generateContent([descriptionPrompt]);
-      const descriptionResponse = descriptionResult.response;
-      const description = descriptionResponse.candidates[0].content.parts[0].text;
-
-      // Segunda chamada para gerar a mensagem
-      const messageResult = await geminiModel.generateContent([messagePrompt]);
-      const messageResponse = messageResult.response;
-      const message = messageResponse.candidates[0].content.parts[0].text;
-
-      res.status(200).json({ description, message }); // Envia ambas as partes na resposta
+      res.status(200).json({ description });
     } catch (error) {
       console.error("Erro ao chamar a API do Gemini:", error);
-      res.status(500).json({ error: "Erro ao gerar a descrição e a mensagem." });
+      res.status(500).json({ error: "Erro ao gerar a descrição." });
     }
   } else {
     res.status(405).json({ error: "Método não permitido. Use POST." });
