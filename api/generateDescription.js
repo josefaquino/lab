@@ -2,6 +2,7 @@
 
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
+// Garante que a variável de ambiente da chave de API esteja definida no Vercel
 const apiKey = process.env.GEMINI_API_KEY;
 
 if (!apiKey) {
@@ -9,7 +10,7 @@ if (!apiKey) {
 }
 
 const genAI = new GoogleGenerativeAI(apiKey);
-const model = "gemini-2.0-flash";
+const model = "gemini-2.0-flash"; // Ou "gemini-2.0-flash"
 
 module.exports = async (req, res) => {
   if (req.method === 'POST') {
