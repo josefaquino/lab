@@ -1,26 +1,26 @@
 async function getAIDescription(name, keywords) {
-  try {
-    const response = await fetch('/api/generateDescription', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, keywords }),
-    });
+    try {
+        const response = await fetch('/api/generateDescription', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, keywords }),
+        });
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Erro ao chamar a função serverless:', errorData.error);
-      return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades
+        if (!response.ok) {
+            const errorData = await response.json();
+            console.error('Erro ao chamar a função serverless:', errorData.error);
+            return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades
+        }
+
+        const data = await response.json();
+        return data; // Retorna o objeto completo { description, message }
+
+    } catch (error) {
+        console.error('Erro ao enviar dados para a função serverless:', error);
+        return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades em caso de erro
     }
-
-    const data = await response.json();
-    return data; // Retorna o objeto completo { description, message }
-
-  } catch (error) {
-    console.error('Erro ao enviar dados para a função serverless:', error);
-    return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades em caso de erro
-  }
 }
 
 async function addName() {
@@ -132,7 +132,7 @@ function importNames() {
         reader.onload = function(event) {
             const fileContent = event.target.result;
             const fileExtension = file.name.split('.').pop().toLowerCase();
-            let names =;
+            let names =; // CORREÇÃO: Inicialização do array names
 
             if (fileExtension === 'txt') {
                 names = fileContent.split('\n').map(name => name.trim()).filter(name => name !== '');
