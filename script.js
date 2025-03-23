@@ -1,27 +1,27 @@
 async function getAIDescription(name, keywords) {
-    try {
-      const response = await fetch('/api/generateDescription', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, keywords }),
-      });
+  try {
+    const response = await fetch('/api/generateDescription', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, keywords }),
+    });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error('Erro ao chamar a função serverless:', errorData.error);
-        return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades
-      }
-
-      const data = await response.json();
-      return data; // Retorna o objeto completo { description, message }
-
-    } catch (error) {
-      console.error('Erro ao enviar dados para a função serverless:', error);
-      return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades em caso de erro
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error('Erro ao chamar a função serverless:', errorData.error);
+      return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades
     }
+
+    const data = await response.json();
+    return data; // Retorna o objeto completo { description, message }
+
+  } catch (error) {
+    console.error('Erro ao enviar dados para a função serverless:', error);
+    return { description: `Não foi possível gerar uma descrição para ${name}.`, message: '' }; // Retorna um objeto com ambas as propriedades em caso de erro
   }
+}
 
 async function addName() {
     const nameInput = document.getElementById("nameInput");
@@ -170,15 +170,15 @@ function drawName() {
 
 function showDescriptionModal(event) {
     const description = event.currentTarget.dataset.descricao;
-    const message = event.currentTarget.dataset.mensagem; // *** RECUPERA A MENSAGEM DO DATASET ***
+    const message = event.currentTarget.dataset.mensagem; // Recupera a mensagem do dataset
     const modal = document.getElementById('descriptionModal');
     const modalDescription = document.getElementById('modalDescription');
-    const modalMessage = document.getElementById('modalMessage'); // *** NOVO: Elemento para a mensagem ***
+    const modalMessage = document.getElementById('modalMessage'); // Elemento para a mensagem
     const closeButton = document.querySelector('.close-button');
 
     if (modal && modalDescription && modalMessage) {
         modalDescription.textContent = description;
-        modalMessage.textContent = message; // *** EXIBE A MENSAGEM NO MODAL ***
+        modalMessage.textContent = message; // Exibe a mensagem no modal
         modal.style.display = 'block';
     }
 
