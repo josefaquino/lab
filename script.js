@@ -1,3 +1,5 @@
+console.log('Arquivo script.js carregado!');
+
 async function getAIDescription(name, keywords) {
     try {
         const response = await fetch('/api/generateDescription', {
